@@ -1,7 +1,11 @@
+import { Container, Snackbar } from '@mui/material';
+import Header from './components/Header';
 
 function App() {
   return (
-    <h1>Estamos en App</h1>
+    <Container className='tweets-simulator' maxWidth={false}>
+      <Header />
+    </Container>
   );
 }
 
