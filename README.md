@@ -8,13 +8,13 @@ En esta aplicacion se realiza hara..
 
 Instalacion de Dependencias:
 
-* `MaterialUI` -> yarn add @mui/material @emotion/react @emotion/styled
+* `MaterialUI` > yarn add @mui/material @emotion/react @emotion/styled
 
-* `MaterialUI-Iconos` -> yarn add @mui/icons-material
+* `MaterialUI-Iconos` > yarn add @mui/icons-material
 
-* `Moment.JS` -> yarn add moment
+* `Moment.JS` > yarn add moment
 
-* `SASS` -> yarn add sass
+* `SASS` > yarn add sass
 
 ---
 
