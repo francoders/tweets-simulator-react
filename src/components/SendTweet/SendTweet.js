@@ -6,8 +6,10 @@ import "./SendTweet.scss"
 import ModalContainer from '../ModalContainer'
 import FormSendTweet from '../FormSendTweet'
 import twitterIcon from '../../assets/img/twitter-logo.png';
+import { TWEETS_STORAGE } from '../../utils/Contants'
 
-export default function SendTweet() {
+export default function SendTweet(props) {
+    const { setToasProps, allTweets } = props;
     const [isOpenModal, setIsOpenModal] = useState(false);
 
     const openModal = () => {
@@ -17,6 +19,34 @@ export default function SendTweet() {
     const closeModal = () => {
         setIsOpenModal(false);
     };
+
+
+    const sendTweet = (event, formValue) => {
+        event.preventDefault();
+        const { name, tweet } = formValue;
+        let allTweetArray = [];
+
+        if (allTweets) {
+            allTweetArray = allTweets;
+        }
+
+        if (!name || !tweet) {
+            setToasProps({
+                open: true,
+                text: 'WARNING: Todos los campos son obligatorios'
+            })
+        } else {
+            formValue.time = moment();
+            allTweetArray.push(formValue)
+            localStorage.setItem(TWEETS_STORAGE, JSON.stringify(allTweetArray));
+            setToasProps({
+                open: true,
+                text: 'Tween enviado correctamente'
+            })
+            closeModal()
+        }
+        allTweetArray = [];
+    }
 
     return (
         <div className="send-tweet">
@@ -30,7 +60,7 @@ export default function SendTweet() {
             </Fab>
 
             <ModalContainer isOpenModal={isOpenModal} closeModal={closeModal}>
-                <FormSendTweet />
+                <FormSendTweet sendTweet={sendTweet} />
             </ModalContainer>
         </div>
     )
